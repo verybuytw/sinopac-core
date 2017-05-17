@@ -56,7 +56,7 @@ class CloseCaseResponseRequest extends RequestContract
     public function validate(): self
     {
         return $this->validFieldExists([
-            'OrderID', 'ShopNO', 'TSNO', 'Amount', 'Status'
+            'OrderID', 'ShopNO', 'TSNO', 'Amount'
         ]);
     }
 
