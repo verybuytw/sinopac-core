@@ -1,20 +1,41 @@
 <?php
 
-namespace VeryBuy\Payment\SinoPac;
+namespace VeryBuy\Payment\SinoPac\Order;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
 use VeryBuy\Payment\SinoPac\Exceptions\InvalidArgumentException;
-use VeryBuy\Payment\SinoPac\Order;
+use VeryBuy\Payment\SinoPac\Order\AbstractOrder;
+use VeryBuy\Payment\SinoPac\Order\AtmOrder;
+use VeryBuy\Payment\SinoPac\Order\CreditCardOrder;
+use VeryBuy\Payment\SinoPac\SinoPacContract;
 
 class OrderCollection extends Collection implements Arrayable, Jsonable
 {
     public function init(): self
     {
         return $this->map(function($item) {
-            return new Order($item);
+            return $this->genClassFromType($item);
         });
+    }
+
+    /**
+     * @param  object $item
+     * @return AbstractOrder
+     */
+    protected function genClassFromType($item): AbstractOrder
+    {
+        $types = [
+            SinoPacContract::PAYTYPE_ATM => AtmOrder::class,
+            SinoPacContract::PAYTYPE_CREDITCARD => CreditCardOrder::class
+        ];
+
+        if (array_key_exists($item->PayType, $types)) {
+            return new $types[$item->PayType]($item);
+        }
+
+        throw new InvalidArgumentException('Undefined Order type.');
     }
 
     /**

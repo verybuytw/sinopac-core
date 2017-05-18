@@ -2,7 +2,7 @@
 
 namespace VeryBuy\Payment\SinoPac\Responses;
 
-use VeryBuy\Payment\SinoPac\OrderCollection;
+use VeryBuy\Payment\SinoPac\Order\OrderCollection;
 use VeryBuy\Payment\SinoPac\Responses\ResponseContract;
 
 class QueryTradeStatusResponse extends ResponseContract

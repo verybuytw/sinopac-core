@@ -1,12 +1,12 @@
 <?php
 
-namespace VeryBuy\Payment\SinoPac;
+namespace VeryBuy\Payment\SinoPac\Order;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use VeryBuy\Payment\SinoPac\BuilderTrait\Response\NormalTrait;
 
-class Order implements Arrayable, Jsonable
+abstract class AbstractOrder implements Arrayable, Jsonable
 {
 	use NormalTrait;
 
