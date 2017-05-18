@@ -51,6 +51,6 @@ class QueryTradeStatusRequestTest extends AbstractTestCase
             SinoPacContract::REQUEST_QUERY_TRADE_STATUS_TEST
         ));
 
-        dump($response->getOrderCollection()->toArray());
+        dump($response->getOrderCollection());
     }
 }
