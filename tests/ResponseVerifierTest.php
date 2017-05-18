@@ -18,11 +18,10 @@ class ResponseVerifierTest extends AbstractTestCase
     {
         $verifier = new ResponseVerifier($this->stub);
 
-        // dump($verifier->getTradedAt());
-        // dump($verifier->getPaidAt());
-        // dump($verifier->getAmount());
-        // dump($verifier->isRefund());
-        // dump($verifier->isAtm());
-        // dump($verifier->isCreditCard());
+        $this->assertTrue($verifier->isAtm());
+        $this->assertFalse($verifier->isCreditCard());
+        $this->assertFalse($verifier->isRefund());
+        $this->assertEquals('2017-05-16 20:25:09', $verifier->getTradedAt());
+        $this->assertEquals('2017-05-16 20:30:01', $verifier->getPaidAt());
     }
 }

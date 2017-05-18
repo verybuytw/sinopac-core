@@ -4,6 +4,7 @@ namespace Tests\Payment\SinoPac;
 
 use Tests\Payment\SinoPac\AbstractTestCase;
 use Tests\Payment\SinoPac\ConfigTrait;
+use VeryBuy\Payment\SinoPac\Order\OrderCollection;
 use VeryBuy\Payment\SinoPac\RequestBuilder;
 use VeryBuy\Payment\SinoPac\Requests\QueryTradeStatusRequest;
 use VeryBuy\Payment\SinoPac\SinoPacContract;
@@ -17,18 +18,18 @@ class QueryTradeStatusRequestTest extends AbstractTestCase
      */
     public function 測試虛擬帳號格式正確()
     {
-        // $response = (new RequestBuilder(
-        //     $this->companyStub,
-        //     $this->keyStub)
-        // )->make(new QueryTradeStatusRequest(
-        //     [
-        //         'PayType' => SinoPacContract::PAYTYPE_ATM,
-        //         'PayFlag' => SinoPacContract::PAYFLAG_ATM_ALL,
-        //     ],
-        //     SinoPacContract::REQUEST_QUERY_TRADE_STATUS_TEST
-        // ));
+        $response = (new RequestBuilder(
+            $this->companyStub,
+            $this->keyStub)
+        )->make(new QueryTradeStatusRequest(
+            [
+                'PayType' => SinoPacContract::PAYTYPE_ATM,
+                'PayFlag' => SinoPacContract::PAYFLAG_ATM_ALL,
+            ],
+            SinoPacContract::REQUEST_QUERY_TRADE_STATUS_TEST
+        ));
 
-        // dump($response);
+        $this->assertInstanceOf(OrderCollection::class, $response->getOrderCollection());
     }
 
     /**
@@ -51,6 +52,6 @@ class QueryTradeStatusRequestTest extends AbstractTestCase
             SinoPacContract::REQUEST_QUERY_TRADE_STATUS_TEST
         ));
 
-        dump($response->getOrderCollection());
+        $this->assertInstanceOf(OrderCollection::class, $response->getOrderCollection());
     }
 }
