@@ -112,6 +112,8 @@ trait EncryptVerifyCodeTrait
      */
     protected function hash256(string $encryptString): string
     {
+        dump($encryptString);
+
         return hash('sha256', $encryptString);
     }
 }

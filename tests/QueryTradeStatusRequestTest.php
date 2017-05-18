@@ -17,21 +17,40 @@ class QueryTradeStatusRequestTest extends AbstractTestCase
      */
     public function 測試虛擬帳號格式正確()
     {
+        // $response = (new RequestBuilder(
+        //     $this->companyStub,
+        //     $this->keyStub)
+        // )->make(new QueryTradeStatusRequest(
+        //     [
+        //         'PayType' => SinoPacContract::PAYTYPE_ATM,
+        //         'PayFlag' => SinoPacContract::PAYFLAG_ATM_ALL,
+        //     ],
+        //     SinoPacContract::REQUEST_QUERY_TRADE_STATUS_TEST
+        // ));
+
+        // dump($response);
+    }
+
+    /**
+     * @test
+     */
+    public function 測試虛擬帳號時間區間查詢()
+    {
         $response = (new RequestBuilder(
             $this->companyStub,
             $this->keyStub)
         )->make(new QueryTradeStatusRequest(
             [
                 'PayType' => SinoPacContract::PAYTYPE_ATM,
-                'OrderDateS' => null,
-                'OrderTimeS' => null,
-                'OrderDateE' => null,
-                'OrderTimeE' => null,
+                'OrderDateS' => '20170516',
+                'OrderTimeS' => '0000',
+                'OrderDateE' => '20170516',
+                'OrderTimeE' => '0115',
                 'PayFlag' => SinoPacContract::PAYFLAG_ATM_ALL,
             ],
             SinoPacContract::REQUEST_QUERY_TRADE_STATUS_TEST
         ));
 
-        // dump($response);
+        dump($response->getOrderCollection()->toArray());
     }
 }

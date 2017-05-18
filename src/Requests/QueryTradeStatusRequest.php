@@ -56,7 +56,9 @@ class QueryTradeStatusRequest extends RequestContract
      */
     public function validate(): self
     {
-        return $this;
+        return $this->validFieldExists([
+            'PayType', 'PayFlag'
+        ]);
     }
 
     /**
