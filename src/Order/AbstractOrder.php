@@ -41,6 +41,18 @@ abstract class AbstractOrder implements Arrayable, Jsonable
 	}
 
 	/**
+	 * @return string|LogicException
+	 */
+	public function getPayStatusMessage()
+	{
+		if (array_key_exists($this->getPayType(), $response = $this->getResponseCode())) {
+			return $response[$this->getPayType()];
+		}
+
+		throw new \LogicException('SinoPac undefined error message at version 6.1.5');
+	}
+
+	/**
 	 * @return array
 	 */
 	abstract protected function getResponseCode(): array;
