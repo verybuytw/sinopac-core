@@ -17,5 +17,12 @@ class ResponseVerifierTest extends AbstractTestCase
     public function 測試銀行回應格式正確()
     {
         $verifier = new ResponseVerifier($this->stub);
+
+        // dump($verifier->getTradedAt());
+        // dump($verifier->getPaidAt());
+        // dump($verifier->getAmount());
+        // dump($verifier->isRefund());
+        // dump($verifier->isAtm());
+        // dump($verifier->isCreditCard());
     }
 }
