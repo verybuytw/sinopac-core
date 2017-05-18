@@ -39,4 +39,9 @@ abstract class AbstractOrder implements Arrayable, Jsonable
 	{
 		return json_encode($this->toArray());
 	}
+
+	/**
+	 * @return array
+	 */
+	abstract protected function getResponseCode(): array;
 }

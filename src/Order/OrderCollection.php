@@ -31,8 +31,8 @@ class OrderCollection extends Collection implements Arrayable, Jsonable
             SinoPacContract::PAYTYPE_CREDITCARD => CreditCardOrder::class
         ];
 
-        if (array_key_exists($item->PayType, $types)) {
-            return new $types[$item->PayType]($item);
+        if (array_key_exists($item->getPayType(), $types)) {
+            return new $types[$item->getPayType()]($item);
         }
 
         throw new InvalidArgumentException('Undefined Order type.');
