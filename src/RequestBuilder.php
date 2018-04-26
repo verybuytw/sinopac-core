@@ -93,8 +93,9 @@ class RequestBuilder
                 $this->getRequestContent()
             );
 
+            $options['headers']['User-Agent'] = 'Verybuy'; // 永豐 API 請求不接受預設的 Guzzle User Agent
             $response = $this
-                ->genClient()
+                ->genClient($options)
                 ->send($request);
         } catch (RequestException $e) {
             $response = $e->getResponse();

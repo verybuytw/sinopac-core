@@ -52,8 +52,9 @@ trait AuthenticateRequestTrait
     protected function registerToken()
     {
         try {
+            $options['headers']['User-Agent'] = 'Verybuy'; // 永豐 API 請求不接受預設的 Guzzle User Agent
             $response = $this
-                ->getClient()
+                ->getClient($options)
                 ->get($this->request->getUri());
         } catch (RequestException $e) {
             $response = $e->getResponse();
