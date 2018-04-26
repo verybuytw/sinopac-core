@@ -18,4 +18,9 @@ class ResponseVerifier extends ResponseContract
     {
         return $this->parsed->OrderID;
     }
+
+    public function getKeyNumber(): int
+    {
+        return $this->parsed->KeyNum;
+    }
 }

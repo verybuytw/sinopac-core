@@ -1,10 +1,10 @@
 {
-    "name": "hughes/sinopac-core",
+    "name": "verybuytw/sinopac-core",
     "type": "library",
     "authors": [
         {
-            "name": "Hughes",
-            "email": "hughes@pht-studio.com"
+            "name": "VeryBuy",
+            "email": "rd@verybuy.com.tw"
         }
     ],
     "require": {

@@ -27,6 +27,8 @@ trait HttpClientTrait
      */
     protected function genClient(array $options = []): Client
     {
+        /* 永豐 API 請求不接受預設的 Guzzle User Agent */
+        $options['headers']['User-Agent'] = 'Verybuy';
         return (new Client($options));
     }
 }
